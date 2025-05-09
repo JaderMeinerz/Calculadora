@@ -14,19 +14,21 @@ public class Main {
         //Captura o número da seleção desejada e retorna para a função main
         return sc.nextInt();
     }
-    public static int[] lerDoisNumeros(String operacao) {
-        // TODO: Considerar mais de 2 números
+    public static int[] lerNumeros(String operacao) {
+        //Pergunta com quantos números deseja fazer a operação
+        System.out.println("Quantos números você deseja " + operacao + "? ");
+        //Guarda essa quantidade
+        int quantidade = sc.nextInt();
 
-        //Pergunta o primeiro número
-        System.out.println("Qual o primeiro número que você deseja " + operacao + "? ");
-        //Guarda o primeiro número
-        int a = sc.nextInt();
-        //Pergunta o segundo número
-        System.out.println("Qual o segundo número que você deseja " + operacao + "?");
-        //Guarda o segundo número
-        int b = sc.nextInt();
-        //Retorna a soma dos dois números
-        return new int[]{a,b};
+        //Cria uma lista para guardar todos os números respondidos
+        int[] numeros = new int[quantidade];
+        //Estrutura que continuará a perguntar os números até a quantidade desejada
+        for (int i = 0; i < quantidade; i++) {
+            System.out.println("Digite o " + (i +1) +"ª número a " + operacao+":");
+            numeros[i] = sc.nextInt();
+        }
+        //Retorna a lista para a função principal
+        return numeros;
     }
 
     public static void main(String[] args) {
@@ -43,12 +45,12 @@ public class Main {
                     return;
                 case 1:
                     //Caso selecione a opção 1(soma), chama a função soma para resolver a operação
-                    numeros = lerDoisNumeros("somar");
+                    numeros = lerNumeros("somar");
                     System.out.println("O resultado da soma é igual a " + Calculadora.soma(numeros));
                     break;
                 case 2:
                     //Caso selecione a opção 2(subtração), chama a função subtração para resolver a operação
-                    numeros = lerDoisNumeros("subtrair");
+                    numeros = lerNumeros("subtrair");
                     System.out.println("O resultado da subtração é igual a " + Calculadora.subtracao(numeros));
                     break;
                 default:

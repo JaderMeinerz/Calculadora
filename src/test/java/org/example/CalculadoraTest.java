@@ -21,16 +21,25 @@ public class CalculadoraTest {
     }
 
     @Test
+    public void testSomaTresNumerosPositivos(){
+        assertEquals(18, Calculadora.soma(new int[]{5,12,1}));
+    }
+
+    @Test
     public void testSubtracaoDoisNumeroPositivos(){
         assertEquals(5, Calculadora.subtracao(new int[]{15,10}));
     }
 
     @Test
+    public void testSubtracaoTresNumerosPositivos(){
+        assertEquals(2, Calculadora.subtracao(new int[]{30,15,13}));
+    }
+    @Test
     public void testSubtracaoComZero(){
-        assertEquals(7, Calculadora.subtracao(new int[]{7, 0}));
+        assertEquals(2, Calculadora.subtracao(new int[]{7,0,5 }));
     }
 
     @Test void testSubtracaoComNumeroNegativo(){
-        assertEquals(2, Calculadora.subtracao(new int[]{-5, -7}));
+        assertEquals(-6, Calculadora.subtracao(new int[]{-5, -7, 8}));
     }
 }
