@@ -9,29 +9,30 @@ public class Main {
         //Mostramos o menu e pedimos que selecione o número da operação desejada
         System.out.println("Qual operação você gostaria de efetuar?(Digite o número)");
         System.out.println("[1] - Soma ");
+        System.out.println("[2] - Subtração");
         System.out.println("[0] - Encerrar ");
         //Captura o número da seleção desejada e retorna para a função main
         return sc.nextInt();
     }
+    public static int[] lerDoisNumeros(String operacao) {
+        // TODO: Considerar mais de 2 números
 
-    public static void menuSoma() {
-        // TODO: Considerar soma de mais de 2 números
-
-        //Pergunta o primeiro número a ser somado
-        System.out.println("Qual o primeiro número que você deseja somar?");
+        //Pergunta o primeiro número
+        System.out.println("Qual o primeiro número que você deseja " + operacao + "? ");
         //Guarda o primeiro número
         int a = sc.nextInt();
         //Pergunta o segundo número
-        System.out.println("Qual o segundo número que você deseja somar?");
+        System.out.println("Qual o segundo número que você deseja " + operacao + "?");
         //Guarda o segundo número
         int b = sc.nextInt();
         //Retorna a soma dos dois números
-        System.out.println("O resultado da sua soma é igual a " + Calculadora.soma(a, b));
+        return new int[]{a,b};
     }
 
     public static void main(String[] args) {
         // TODO: tratar entrada inválida (ex: letra ao invés de número)
         while (true) {
+            int [] numeros;
             //Chama o menu que retorna o número da operação desejada
             int res = menu();
             //Testa qual a operação desejada e chama a função desejada
@@ -42,7 +43,13 @@ public class Main {
                     return;
                 case 1:
                     //Caso selecione a opção 1(soma), chama a função soma para resolver a operação
-                    menuSoma();
+                    numeros = lerDoisNumeros("somar");
+                    System.out.println("O resultado da soma é igual a " + Calculadora.soma(numeros));
+                    break;
+                case 2:
+                    //Caso selecione a opção 2(subtração), chama a função subtração para resolver a operação
+                    numeros = lerDoisNumeros("subtrair");
+                    System.out.println("O resultado da subtração é igual a " + Calculadora.subtracao(numeros));
                     break;
                 default:
                     //Caso não encontre a operação desejada retorna que a operação não foi encontrada
