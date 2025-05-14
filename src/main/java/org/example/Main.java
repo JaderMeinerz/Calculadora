@@ -13,6 +13,7 @@ public class Main {
             System.out.println("[1] - Soma ");
             System.out.println("[2] - Subtração");
             System.out.println("[3] - Multiplicação");
+            System.out.println("[4] - Divisão");
             System.out.println("[0] - Encerrar ");
             //Captura o número da seleção desejada e retorna para a função main
 
@@ -42,7 +43,7 @@ public class Main {
         for (int i = 0; i < quantidade; i++) {
             while (true) {
                 try {
-                    System.out.println("Digite o " + (i + 1) + "ª número a " + operacao + ":");
+                    System.out.println("Digite o " + (i + 1) + "º número a " + operacao + ":");
                     numeros[i] = sc.nextInt();
                     break;
                 } catch (InputMismatchException e) {
@@ -56,6 +57,13 @@ public class Main {
 
     }
 
+    private static boolean validarNumeros(int[] numeros){
+        if (numeros.length == 0){
+            System.out.println("Nenhum número informado. Operação cancelada");
+            return false;
+        }
+        return true;
+    }
     public static void main(String[] args) {
         // TODO: tratar entrada inválida (ex: letra ao invés de número)
         while (true) {
@@ -71,20 +79,31 @@ public class Main {
                 case 1:
                     //Caso selecione a opção 1(soma), chama a função soma para resolver a operação
                     numeros = lerNumeros("somar");
-                    if (numeros.length == 0) break;
+                    if(!validarNumeros(numeros)) break;
                     System.out.println("O resultado da soma é igual a " + Calculadora.soma(numeros));
                     break;
                 case 2:
                     //Caso selecione a opção 2(subtração), chama a função subtração para resolver a operação
                     numeros = lerNumeros("subtrair");
-                    if (numeros.length == 0) break;
+                    if(!validarNumeros(numeros)) break;
                     System.out.println("O resultado da subtração é igual a " + Calculadora.subtracao(numeros));
                     break;
                 case 3:
                     //Caso selecione a opção 3(multiplicação), chama a função multiplicação para resolver a operação
                     numeros = lerNumeros("multiplicar");
-                    if (numeros.length == 0) break;
+                    if(!validarNumeros(numeros)) break;
                     System.out.println("O resultado da multiplicação é igual a " + Calculadora.multiplicacao(numeros));
+                    break;
+                case 4:
+                    //Caso selecione a opção 3(divisão), chama a função divisão para resolver a operação
+                    numeros = lerNumeros("dividir");
+                    if(!validarNumeros(numeros)) break;
+                    try {
+                        System.out.println("O resultado da divisão é igual a " + Calculadora.divisao(numeros));
+                    } catch (ArithmeticException e) {
+                        //Enviamos uma mensagem de erro caso o usuário tente dividir por 0(zero)
+                        System.out.println("Erro: " + e.getMessage());
+                    }
                     break;
                 default:
                     //Caso não encontre a operação desejada retorna que a operação não foi encontrada

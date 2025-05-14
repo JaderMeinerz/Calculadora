@@ -26,4 +26,16 @@ public class Calculadora {
         }
         return resultado;
     }
+
+    public static int divisao(int[] numeros) {
+        if (numeros.length == 0) return 0;
+        int resultado = numeros[0];
+        for (int i = 1; i < numeros.length; i++) {
+            if (numeros[i] == 0){
+                throw new ArithmeticException("Divisão por zero detectada.");
+            }
+            resultado /= numeros[i];
+        }
+        return resultado;
+    }
 }
