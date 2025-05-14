@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.model.Calculadora;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
