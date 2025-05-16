@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dto.OperacaoInput;
 import org.example.model.Calculadora;
 import org.example.view.CalculadoraView;
 
@@ -13,50 +14,52 @@ public class CalculadoraController {
     }
 
     public void executarOperacao(int operacao) {
-        int[] numeros;
+        OperacaoInput input;
+        int resultado;
+
         switch (operacao) {
             case 1:
                 // Soma
-                numeros = view.lerNumeros("somar");
-                if (numeros.length > 0) {
-                    int resultado = model.soma(numeros);
-                    view.mostrarResultado("soma", resultado);
-                } else {
-                    view.mostrarMensagemErro("Nenhum número informado. Operação cancelada.");
+                input = view.lerNumeros("somar");
+                if (!input.isValido()) {
+                    view.mostrarMensagemErro(input.getMensagemErro());
+                    return;
                 }
+                resultado = model.soma(input.getNumeros());
+                view.mostrarResultado("soma",resultado);
                 break;
             case 2:
                 // Subtração
-                numeros = view.lerNumeros("subtrair");
-                if (numeros.length > 0) {
-                    int resultado = model.subtracao(numeros);
-                    view.mostrarResultado("subtração", resultado);
-                } else {
-                    view.mostrarMensagemErro("Nenhum número informado. Operação cancelada.");
+                input = view.lerNumeros("subtrair");
+                if (!input.isValido()) {
+                    view.mostrarMensagemErro(input.getMensagemErro());
+                    return;
                 }
+                resultado = model.subtracao(input.getNumeros());
+                view.mostrarResultado("subtração",resultado);
                 break;
             case 3:
                 // Multiplicação
-                numeros = view.lerNumeros("multiplicar");
-                if (numeros.length > 0) {
-                    int resultado = model.multiplicacao(numeros);
-                    view.mostrarResultado("multiplicação", resultado);
-                } else {
-                    view.mostrarMensagemErro("Nenhum número informado. Operação cancelada.");
+                input = view.lerNumeros("multiplicar");
+                if (!input.isValido()) {
+                    view.mostrarMensagemErro(input.getMensagemErro());
+                    return;
                 }
+                resultado = model.multiplicacao(input.getNumeros());
+                view.mostrarResultado("multiplicação",resultado);
                 break;
             case 4:
                 // Divisão
-                numeros = view.lerNumeros("dividir");
-                if (numeros.length > 0) {
-                    try {
-                        int resultado = model.divisao(numeros);
-                        view.mostrarResultado("divisão", resultado);
-                    } catch (ArithmeticException e) {
-                        view.mostrarMensagemErro("Erro: " + e.getMessage());
-                    }
-                } else {
-                    view.mostrarMensagemErro("Nenhum número informado. Operação cancelada.");
+                input = view.lerNumeros("dividir");
+                if (!input.isValido()) {
+                    view.mostrarMensagemErro(input.getMensagemErro());
+                    return;
+                }
+                try {
+                    resultado = model.divisao(input.getNumeros());
+                    view.mostrarResultado("divisão",resultado);
+                } catch (ArithmeticException e) {
+                    view.mostrarMensagemErro("Erro: " + e.getMessage());
                 }
                 break;
             case 0:

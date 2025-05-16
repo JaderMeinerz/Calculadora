@@ -1,5 +1,7 @@
 package org.example.view;
 
+import org.example.dto.OperacaoInput;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -38,17 +40,17 @@ public class CalculadoraView {
         return quantidade;
     }
 
-    public int[] lerNumeros(String operacao) {
+    public OperacaoInput lerNumeros(String operacao) {
         int quantidade = lerQuantidade(operacao);
 
-        //Caso o usuário cacele ou erre, evita Array com tamanho inválido
+        //Caso o usuário cancele ou erre, evita Array com tamanho inválido
         if (quantidade <= 0) {
-            return new int[0];
+            return new OperacaoInput("Quantidade inválida. Operação cancelada.");
         }
         //Cria uma lista para guardar todos os números respondidos
         int[] numeros = new int[quantidade];
         //Estrutura que continuará a perguntar os números até a quantidade desejada
-        for (int i = 0; i < numeros.length; i++) {
+        for (int i = 0; i < quantidade; i++) {
             while (true) {
                 try {
                     System.out.println("Digite o " + (i + 1) + "º número a " + operacao + ":");
@@ -61,7 +63,7 @@ public class CalculadoraView {
             }
             //Retorna a lista para a função principal
         }
-        return numeros;
+        return new OperacaoInput(numeros);
 
     }
 
