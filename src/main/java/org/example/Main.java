@@ -4,8 +4,6 @@ import org.example.controller.CalculadoraController;
 import org.example.model.Calculadora;
 import org.example.view.CalculadoraView;
 
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
 

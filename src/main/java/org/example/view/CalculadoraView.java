@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class CalculadoraView {
     private static final Scanner sc = new Scanner(System.in);
+
     public int mostrarMenu() {
-            //Mostramos o menu e pedimos que selecione o número da operação desejada
+        //Mostramos o menu e pedimos que selecione o número da operação desejada
         try {
             System.out.println("Qual operação você gostaria de efetuar?(Digite o número)");
             System.out.println("[1] - Soma ");
@@ -22,7 +23,7 @@ public class CalculadoraView {
         }
     }
 
-    public static int lerQuantidade(String operacao){
+    public int lerQuantidade(String operacao) {
         int quantidade;
         try {
             //Pergunta com quantos números deseja fazer a operação
@@ -36,11 +37,12 @@ public class CalculadoraView {
         }
         return quantidade;
     }
-    public static int[] lerNumeros(String operacao) {
+
+    public int[] lerNumeros(String operacao) {
         int quantidade = lerQuantidade(operacao);
 
         //Caso o usuário cacele ou erre, evita Array com tamanho inválido
-        if(quantidade<=0){
+        if (quantidade <= 0) {
             return new int[0];
         }
         //Cria uma lista para guardar todos os números respondidos
@@ -64,10 +66,10 @@ public class CalculadoraView {
     }
 
     public void mostrarResultado(String operacao, int resultado) {
-        System.out.println("O resultado da " + operacao +" é: " + resultado);
+        System.out.println("O resultado da " + operacao + " é: " + resultado);
     }
 
-    public void mostrarMensagemErro(String mensagem){
+    public void mostrarMensagemErro(String mensagem) {
         System.out.println(mensagem);
     }
 }

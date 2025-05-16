@@ -4,8 +4,8 @@ import org.example.model.Calculadora;
 import org.example.view.CalculadoraView;
 
 public class CalculadoraController {
-    private Calculadora model;
-    private CalculadoraView view;
+    private final Calculadora model;
+    private final CalculadoraView view;
 
     public CalculadoraController(Calculadora model, CalculadoraView view) {
         this.model = model;
